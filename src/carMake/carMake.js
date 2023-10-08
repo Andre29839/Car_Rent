@@ -1,0 +1,28 @@
+const carMake = [
+  { value: 'Aston Martin', label: 'Aston Martin' },
+  { value: 'Audi', label: 'Audi' },
+  { value: 'Bentley', label: 'Bentley' },
+  { value: 'BMW', label: 'BMW' },
+  { value: 'Buick', label: 'Buick' },
+  { value: 'Chevrolet', label: 'Chevrolet' },
+  { value: 'Chrysler', label: 'Chrysler' },
+  { value: 'GMC', label: 'GMC' },
+  { value: 'HUMMER', label: 'HUMMER' },
+  { value: 'Hyundai', label: 'Hyundai' },
+  { value: 'Kia', label: 'Kia' },
+  { value: 'Lamborghini', label: 'Lamborghini' },
+  { value: 'Land Rover', label: 'Land Rover' },
+  { value: 'Lexus', label: 'Lexus' },
+  { value: 'Lincoln', label: 'Lincoln' },
+  { value: 'Mercedes-Benz', label: 'Mercedes-Benz' },
+  { value: 'MINI', label: 'MINI' },
+  { value: 'Mitsubishi', label: 'Mitsubishi' },
+  { value: 'Nissan', label: 'Nissan' },
+  { value: 'Pontiac', label: 'Pontiac' },
+  { value: 'Porsche', label: 'Porsche' },
+  { value: 'Subaru', label: 'Subaru' },
+  { value: 'Tesla', label: 'Tesla' },
+  { value: 'Volvo', label: 'Volvo' },
+];
+
+export default carMake;

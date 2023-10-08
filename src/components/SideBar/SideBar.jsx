@@ -1,4 +1,4 @@
-// import Loader from 'components/Loader/Loader';
+import Loader from 'components/Loader/Loader';
 import { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const SideBar = () => {
         <NavLink to="/catalog">Catalog</NavLink>
         <NavLink to="/favorites">Favorites</NavLink>
       </nav>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </>

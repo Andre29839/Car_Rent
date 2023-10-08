@@ -1,7 +1,24 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
+import { getCar } from 'utils/mockapi';
+import CatalogItem from 'components/CatalogItem/CatalogItem';
 
 const Catalog = () => {
-  return <div>Catalog</div>;
+  const [cars, setCars] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const response = await getCar();
+      setCars(response);
+    })();
+  }, []);
+
+  return (
+    <ul>
+      {cars?.map(car => (
+        <CatalogItem key={car.id} carInfo={car} />
+      ))}
+    </ul>
+  );
 };
 
 export default Catalog;
