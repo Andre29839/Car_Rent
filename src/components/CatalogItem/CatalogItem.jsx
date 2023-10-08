@@ -1,4 +1,4 @@
-import { addressFormatting } from 'utils/helpers';
+// import { addressFormatting } from 'utils/helpers';
 
 const CatalogItem = ({ carInfo }) => {
   return;
