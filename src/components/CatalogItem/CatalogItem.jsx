@@ -8,7 +8,6 @@ import { selectFavorites } from 'redux/selectors';
 import { ReactComponent as Heart } from 'images/svg/heart.svg';
 import { addressFormatting } from 'utils/helpers';
 import Modal from 'components/Modal/Modal';
-import useToggleModal from 'Hooks/useToggle';
 
 const CatalogItem = ({ carInfo }) => {
   const dispatch = useDispatch();
