@@ -18,7 +18,7 @@ export const favoritesSlice = createSlice({
       .addCase(getCarDetails.pending, state => {
         state.isLoading = true;
       })
-      .addCase(getCarDetails.fulfilled, (state, { payload }) => {
+      .addCase(getCarDetails.fulfilled, state => {
         state.isLoading = false;
       })
       .addCase(getCarDetails.rejected, state => {

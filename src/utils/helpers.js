@@ -16,7 +16,7 @@ export const generatePrices = (maxPrice = 150) => {
 
 export const applyFilter = (cars, filters) => {
   const filterValue = Object.entries(filters);
-  return cars.filter(car => {
+  return cars?.filter(car => {
     return (
       car[filterValue[0][0]].includes(filterValue[0][1]) &&
       parseFloat(car[filterValue[1][0]].replace('$', '')) <=

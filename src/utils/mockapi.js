@@ -22,4 +22,9 @@ export const getCar = async id => {
   return data;
 };
 
+export const fetchAllCars = async () => {
+  const { data } = await instance.get();
+  return data;
+};
+
 export default instance;

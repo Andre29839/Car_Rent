@@ -1,4 +1,3 @@
-import Catalog from 'components/Catalog/Catalog';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -8,55 +7,71 @@ import {
 import { selectFavorites } from 'redux/selectors';
 import { ReactComponent as Heart } from 'images/svg/heart.svg';
 import { addressFormatting } from 'utils/helpers';
+import Modal from 'components/Modal/Modal';
+import useToggleModal from 'Hooks/useToggle';
 
 const CatalogItem = ({ carInfo }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-  const [modal, setModal] = useState(null);
+  const [modalCar, setModalCar] = useState(null);
 
-  const isInFavorite = id => {
-    return favorites.map(e => e.id).includes(id);
+  const isInFavorites = id => {
+    return favorites.map(el => el.id).includes(id);
   };
 
-  const onClickLearnMore = car => setModal(car);
+  const onLearnMoreClick = car => setModalCar(car);
 
   const onAddClick = car => {
-    if (isInFavorite(car.id)) return dispatch(removeCarFromFavorites(car.id));
+    if (isInFavorites(car.id)) return dispatch(removeCarFromFavorites(car.id));
     else dispatch(addCarToFavorites(car));
   };
 
   return (
     <>
-      {modal ? <Catalog car={modal} closeModal={setModal} /> : null}
-      <li>
-        <div>
-          <img src={carInfo.img} alt={`${carInfo.make} ${carInfo.model}`} />
-          <button onClick={() => onAddClick(carInfo)} type="button">
+      {modalCar ? <Modal car={modalCar} closeModal={setModalCar} /> : null}
+      <li className="flex flex-col justify-between w-[270px]">
+        <div className="relative rounded-[12px] overflow-hidden">
+          <img
+            className="w-[274px] h-[228px]"
+            src={carInfo.img}
+            alt={`${carInfo.make} ${carInfo.model}`}
+          />
+          <button
+            className="absolute top-[14px] right-[14px] border-none bg-transparent"
+            onClick={() => onAddClick(carInfo)}
+            type="button"
+          >
             <Heart
               className={`w-[18px] h-[18px] ${
-                isInFavorite(carInfo.id)
+                isInFavorites(carInfo.id)
                   ? 'fill-btn-primary [&>g>path]:stroke-transparent'
                   : ''
-              }`}
+              }  `}
             />
           </button>
         </div>
-        <div>
+        <div className="flex justify-between mt-[14px] font-medium text-[16px] leading-[24px]">
           <p>
-            {carInfo.male}&nbsp
-            <span>{carInfo.model}</span>&nbsp
+            {carInfo.make}&nbsp;
+            <span className="text-btn-primary">{carInfo.model}</span>,&nbsp;
             {carInfo.year}
           </p>
           <p>{carInfo.rentalPrice}</p>
         </div>
-        <div>
+        <div className="mt-[8px] [&>*]:inline-block text-overlay/[0.5] [&>*]:border-r-[1px] [&>*]:border-overlay/[0.1] [&>*]:px-[6px] text-[12px] leading-[18px]">
           <span>{addressFormatting(carInfo.address).join('')}</span>
           <span>{carInfo.rentalCompany}</span>
-          {carInfo.accessories.map(e => (
-            <span key={e}>{e}</span>
+          {carInfo.accessories.map(el => (
+            <span className="last:border-r-0" key={el}>
+              {el}
+            </span>
           ))}
         </div>
-        <button onClick={() => onClickLearnMore(carInfo)} type="button">
+        <button
+          onClick={() => onLearnMoreClick(carInfo)}
+          className="mt-[16px] py-[12px] bg-btn-primary hover:bg-btn-hover focus:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
+          type="button"
+        >
           Learn More
         </button>
       </li>

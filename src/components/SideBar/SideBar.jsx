@@ -1,12 +1,24 @@
+import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const SideBar = () => {
+const SideBar = ({ isOpen, setIsOpen }) => {
+  useEffect(() => {
+    document.body.style.overflow = 'visible';
+    if (isOpen) document.body.style.overflow = 'hidden';
+  }, [isOpen]);
+
   return (
     <>
       <nav>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/catalog">Catalog</NavLink>
-        <NavLink to="/favorites">Favorites</NavLink>
+        <NavLink onClick={setIsOpen} to="/">
+          Home
+        </NavLink>
+        <NavLink onClick={setIsOpen} to="/catalog">
+          Catalog
+        </NavLink>
+        <NavLink onClick={setIsOpen} to="/favorites">
+          Favorites
+        </NavLink>
       </nav>
     </>
   );

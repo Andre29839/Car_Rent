@@ -1,18 +1,18 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
-import SideBar from './SideBar/SideBar';
 import Home from 'page/Home';
+import Layout from './Layout/Layout';
 
-const Catalog = lazy(() => import('../page/Catalog'));
-const Favorites = lazy(() => import('../page/Favorites'));
+const CatalogPage = lazy(() => import('page/Catalog'));
+const Favorites = lazy(() => import('page/Favorites'));
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<SideBar />}>
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route path="catalog" element={<CatalogPage />} />
+        <Route path="favorites" element={<Favorites />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace={true} />} />
     </Routes>

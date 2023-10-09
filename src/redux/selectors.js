@@ -7,3 +7,5 @@ export const selectCars = createSelector([selectState], state => {
 });
 
 export const selectFavorites = state => state.favorites.carsList;
+
+export const selectIsLoading = state => state.cars.isLoading;

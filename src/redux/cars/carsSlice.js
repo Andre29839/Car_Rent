@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import getCar from './carsOperation';
+import { getCar, getAllCars, resetCarStore } from './carsOperation';
 
 const initialState = {
   cars: [],
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const carSlice = createSlice({
-  name: 'car',
+  name: 'cars',
   initialState,
   extraReducers: builder => {
     builder
@@ -20,6 +20,19 @@ export const carSlice = createSlice({
       })
       .addCase(getCar.rejected, state => {
         state.isLoading = false;
+      })
+      .addCase(getAllCars.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(getAllCars.fulfilled, (state, { payload }) => {
+        state.cars = payload;
+        state.isLoading = false;
+      })
+      .addCase(getAllCars.rejected, state => {
+        state.isLoading = false;
+      })
+      .addCase(resetCarStore, state => {
+        state.cars = [];
       });
   },
 });
