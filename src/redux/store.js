@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
   persistReducer,
@@ -8,26 +8,26 @@ import {
   PERSIST,
   REGISTER,
   PURGE,
-} from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { carReducer } from './cars/carsSlice';
-import { favoritesReducer } from './favorite/favoriteSlice';
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { carsReducer } from "./cars/carsSlice";
+import { favoritesReducer } from "./favorite/favoriteSlice";
 
 const favoriteConfig = {
-  key: 'favotite',
+  key: "favorite",
   storage,
-  whitelist: ['carsList'],
+  whitelist: ["carsList"],
 };
 
 export const store = configureStore({
   reducer: {
-    cars: carReducer,
+    cars: carsReducer,
     favorites: persistReducer(favoriteConfig, favoritesReducer),
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, REGISTER, PURGE],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });

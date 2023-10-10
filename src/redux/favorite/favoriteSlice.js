@@ -1,34 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import {
   addCarToFavorites,
   getCarDetails,
   removeCarFromFavorites,
-} from './favoriteOperation';
+} from "./favoriteOperation";
 
 const initialState = {
   isLoading: false,
-  carList: [],
+  carsList: [],
 };
 
 export const favoritesSlice = createSlice({
-  name: 'favorites',
+  name: "favorites",
   initialState,
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(getCarDetails.pending, state => {
+      .addCase(getCarDetails.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCarDetails.fulfilled, state => {
+      .addCase(getCarDetails.fulfilled, (state) => {
         state.isLoading = false;
       })
-      .addCase(getCarDetails.rejected, state => {
+      .addCase(getCarDetails.rejected, (state) => {
         state.isLoading = false;
       })
       .addCase(addCarToFavorites, (state, { payload }) => {
-        state.carList.push(payload);
+        state.carsList.push(payload);
       })
       .addCase(removeCarFromFavorites, (state, { payload }) => {
-        state.carList = state.carList.filter(car => car.id !== payload);
+        state.carsList = state.carsList.filter((car) => car.id !== payload);
       });
   },
 });

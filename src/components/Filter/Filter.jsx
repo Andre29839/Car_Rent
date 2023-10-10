@@ -1,39 +1,42 @@
-import Select from 'react-select';
-import { useState } from 'react';
-import carMake from 'carMake/carMake';
-import { generatePrices } from 'utils/helpers';
-import { ReactComponent as ArrowUp } from 'images/svg/arrowUp.svg';
-import { ReactComponent as ArrowDown } from 'images/svg/arrowDown.svg';
+import Select from "react-select";
+import { ReactComponent as ArrowUp } from "../../images/svg/arrowUp.svg";
+import { ReactComponent as ArrowDown } from "../../images/svg/arrowDown.svg";
+import { makes } from "../../constants/makes";
+import { generatePricesArr } from "../../utils/helpers";
 import {
-  customMakeSelectStyles,
   customPriceSelectStyles,
-} from './Filter.styled';
+  customMakeSelectStyles,
+} from "./CustomSelectStyles";
+import { useState } from "react";
 
-const Filter = ({ setFilter, onSubmit }) => {
-  const [isDisplaySearch, setIsDisplaySearch] = useState(false);
+export const Filter = ({ setFilter, onSubmit }) => {
+  const [isDisplaySearch, setDisplaySearch] = useState(false);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const { make, mileageFrom, mileageTo, rentalPrice } = e.target.elements;
-
     const filters = {
       make: make.value || '',
       rentalPrice: +rentalPrice.value || 100000,
       mileageFrom: +mileageFrom.value || 0,
       mileageTo: +mileageTo.value || 100000,
     };
-    setFilter(filters);
+    setFilter(filters)
     onSubmit();
   };
 
   const onClickSearch = () => {
-    setIsDisplaySearch(!isDisplaySearch);
+    setDisplaySearch(!isDisplaySearch);
   };
 
   return (
     <>
-      <button onClick={onClickSearch} type="button">
-        {isDisplaySearch ? 'Close filters' : 'Open filters'}
+      <button
+        onClick={onClickSearch}
+        type="button"
+        className="md:hidden p-[10px] mx-auto flex gap-[8px] my-[10px] bg-btn-primary hover:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
+      >
+        {isDisplaySearch ? "Close filters" : "Open filters"}
         {isDisplaySearch ? (
           <ArrowUp width={20} height={20} />
         ) : (
@@ -43,17 +46,17 @@ const Filter = ({ setFilter, onSubmit }) => {
       <form
         className={`${
           isDisplaySearch
-            ? 'flex flex-col items-center px-[25px] gap-y-[8px] pb-[10px]'
-            : 'hidden'
+            ? "flex flex-col items-center px-[25px] gap-y-[8px] pb-[10px]"
+            : "hidden"
         }  md:flex gap-[14px] xl:gap-[18px] max-w-[570px] xl:max-w-[860px] mx-auto mb-[50px]`}
         onSubmit={handleSubmit}
       >
-        <div>
+        <div className="w-[95%] md:w-auto [&>label]:block flex justify-between gap-[8px] md:gap-[14px] xl:gap-[18px]">
           <label>
             <Select
               name="make"
               placeholder="Enter the text"
-              option={carMake}
+              options={makes}
               styles={customMakeSelectStyles}
             />
           </label>
@@ -61,7 +64,7 @@ const Filter = ({ setFilter, onSubmit }) => {
             <Select
               name="rentalPrice"
               placeholder="To $"
-              options={generatePrices().map(price => ({
+              options={generatePricesArr().map((price) => ({
                 value: price,
                 label: `$${price}`,
               }))}
@@ -69,18 +72,31 @@ const Filter = ({ setFilter, onSubmit }) => {
             />
           </label>
         </div>
-        <div>
+        <div className="flex divide-x-[1px] w-[95%] md:w-[200px] xl:w-[320px] divide-[#8A8A8933] rounded-[14px] overflow-hidden text-[14px] md:text-[16px] xl:text-[18px] leading-[20px] font-medium text-overlay">
           <label>
-            <input placeholder="From" type="number" name="mileageFrom" />
+            <input
+              className="bg-background h-[100%] p-[10px] xl:pl-[24px] w-[100%] placeholder:text-overlay focus:outline-btn-primary"
+              type="number"
+              name="mileageFrom"
+              placeholder="From"
+            />
           </label>
           <label>
-            <input placeholder="To" type="number" name="mileageTo" />
+            <input
+              className="bg-background h-[100%] p-[10px] xl:pl-[24px] w-[100%] placeholder:text-overlay focus:outline-btn-primary"
+              type="number"
+              name="mileageTo"
+              placeholder="To"
+            />
           </label>
         </div>
-        <button type="submit">Search</button>
+        <button
+          type="submit"
+          className="w-[95%] md:w-[136px] xl:px-[44px] xl:w-auto py-[12px] bg-btn-primary hover:bg-btn-hover focus:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
+        >
+          Search
+        </button>
       </form>
     </>
   );
 };
-
-export default Filter;

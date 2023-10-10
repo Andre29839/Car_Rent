@@ -1,40 +1,40 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { getCar, getAllCars, resetCarStore } from './carsOperation';
+import { createSlice } from "@reduxjs/toolkit";
+import { getAllCars, getCars, resetCarsStore } from "./carsOperations";
 
 const initialState = {
   cars: [],
   isLoading: false,
 };
 
-export const carSlice = createSlice({
-  name: 'cars',
+export const carsSlice = createSlice({
+  name: "cars",
   initialState,
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
-      .addCase(getCar.pending, state => {
+      .addCase(getCars.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(getCar.fulfilled, (state, { payload }) => {
+      .addCase(getCars.fulfilled, (state, { payload }) => {
         state.cars = [...state.cars, ...payload];
         state.isLoading = false;
       })
-      .addCase(getCar.rejected, state => {
+      .addCase(getCars.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(getAllCars.pending, state => {
+      .addCase(getAllCars.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(getAllCars.fulfilled, (state, { payload }) => {
         state.cars = payload;
         state.isLoading = false;
       })
-      .addCase(getAllCars.rejected, state => {
+      .addCase(getAllCars.rejected, (state) => {
         state.isLoading = false;
       })
-      .addCase(resetCarStore, state => {
+      .addCase(resetCarsStore, (state) => {
         state.cars = [];
       });
   },
 });
 
-export const carReducer = carSlice.reducer;
+export const carsReducer = carsSlice.reducer;

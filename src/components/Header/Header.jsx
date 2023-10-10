@@ -1,9 +1,9 @@
-import { useRef, useState } from 'react';
-import Lottie from 'lottie-react';
-import { useMediaQuery } from 'react-responsive';
-// import { ReactComponent as Logo } from '../../images/svg/logo.svg';
-import burgerMenu from 'images/loader/animation.json';
-import SideBar from 'components/SideBar/SideBar';
+import { useRef, useState } from "react";
+import { ReactComponent as Logo } from "../../images/svg/logo.svg";
+import burgerMenu from "../../images/animation/burgerAnim.json";
+import Lottie from "lottie-react";
+import { Navigation } from "../Navigation/Navigation";
+import { useMediaQuery } from "react-responsive";
 
 const style = {
   width: 32,
@@ -13,7 +13,7 @@ const style = {
 export const Header = () => {
   const lottieRef = useRef();
   const [isOpenNav, setOpenNav] = useState(false);
-  const isMobile = useMediaQuery({ query: '(max-width: 767.9px)' });
+  const isMobile = useMediaQuery({ query: "(max-width: 767.9px)" });
 
   const onBurgerClick = () => {
     if (!isMobile) return;
@@ -29,8 +29,8 @@ export const Header = () => {
 
   return (
     <header>
-      <div>
-        {/* <Logo width={50} height={50} /> */}
+      <div className="flex justify-between items-center py-[28px] px-[16px] xl:px-[24px] max-w-[375px] md:max-w-[1024px] xl:max-w-[1440px] my-0 mx-auto">
+        <Logo width={50} height={50} />
         <Lottie
           onClick={onBurgerClick}
           lottieRef={lottieRef}
@@ -40,7 +40,7 @@ export const Header = () => {
           style={style}
           className="md:hidden"
         />
-        <SideBar setOpenNav={onBurgerClick} isOpenNav={isOpenNav} />
+        <Navigation setOpenNav={onBurgerClick} isOpenNav={isOpenNav} />
       </div>
     </header>
   );

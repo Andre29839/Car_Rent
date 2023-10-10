@@ -1,27 +1,24 @@
 {
-  "name": "car_rent",
+  "name": "car-rent",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Andre29839.github.io/Car_Rent/",
+  "homepage": "https://yurii2007.github.io/car-rent/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
-    "@testing-library/jest-dom": "^5.16.3",
-    "@testing-library/react": "^12.1.4",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
     "lottie-react": "^2.4.0",
-    "modern-normalize": "^2.0.0",
-    "react": "^18.1.0",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.3",
     "react-responsive": "^9.0.2",
     "react-router-dom": "^6.16.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.7",
-    "react-toastify": "^9.1.3",
     "redux-persist": "^6.0.0",
-    "styled-components": "^6.0.8",
-    "web-vitals": "^2.1.3"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.3"
   }
 }
