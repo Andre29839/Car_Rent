@@ -1,13 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { ReactComponent as Heart } from "images/svg/heart.svg";
 import { addressFormatting } from "utils/helpers";
 import { selectFavorites } from "redux/selectors";
 import {
   addCarToFavorites,
   removeCarFromFavorites,
 } from "redux/favorite/favoriteOperation";
+
 import Modal from "components/Modal/Modal";
+import {
+  HeartIcon,
+  ImageContainer,
+  InfoContainer,
+  LearnMoreButton,
+  ListItem,
+  StyledButton,
+  StyledImg,
+  Text,
+  TextContainer,
+} from "./CatalogItem.styled";
 
 const CatalogItem = ({ carInfo }) => {
   const dispatch = useDispatch();
@@ -28,53 +39,43 @@ const CatalogItem = ({ carInfo }) => {
   return (
     <>
       {modalCar ? <Modal car={modalCar} closeModal={setModalCar} /> : null}
-      <li className="flex flex-col justify-between w-[270px]">
-        <div className="relative rounded-[12px] overflow-hidden">
-          <img
-            className="w-[274px] h-[228px]"
+      <ListItem>
+        <ImageContainer>
+          <StyledImg
             src={carInfo.img}
             alt={`${carInfo.make} ${carInfo.model}`}
             loading="lazy"
           />
-          <button
-            className="absolute top-[14px] right-[14px] border-none bg-transparent"
-            onClick={() => onAddClick(carInfo)}
-            type="button"
-          >
-            <Heart
-              className={`w-[18px] h-[18px] ${
-                isInFavorites(carInfo.id)
-                  ? "fill-btn-primary [&>g>path]:stroke-transparent"
-                  : ""
-              }  `}
+          <StyledButton onClick={() => onAddClick(carInfo)} type="button">
+            <HeartIcon
+              className={
+                isInFavorites(carInfo.id) ? "favorite" : "not-favorite"
+              }
             />
-          </button>
-        </div>
-        <div className="flex justify-between mt-[14px] font-medium text-[16px] leading-[24px]">
+          </StyledButton>
+        </ImageContainer>
+        <TextContainer>
           <p>
             {carInfo.make}&nbsp;
-            <span className="text-btn-primary">{carInfo.model}</span>,&nbsp;
+            <Text>{carInfo.model}</Text>,&nbsp;
             {carInfo.year}
           </p>
           <p>{carInfo.rentalPrice}</p>
-        </div>
-        <div className="mt-[8px] [&>*]:inline-block text-overlay/[0.5] [&>*]:border-r-[1px] [&>*]:border-overlay/[0.1] [&>*]:px-[6px] text-[12px] leading-[18px]">
+        </TextContainer>
+        <InfoContainer>
           <span>{addressFormatting(carInfo.address).join("")}</span>
           <span>{carInfo.rentalCompany}</span>
           {carInfo.accessories.map((el) => (
-            <span className="last:border-r-0" key={el}>
-              {el}
-            </span>
+            <span key={el}>{el}</span>
           ))}
-        </div>
-        <button
+        </InfoContainer>
+        <LearnMoreButton
           onClick={() => onLearnMoreClick(carInfo)}
-          className="mt-[16px] py-[12px] bg-btn-primary hover:bg-btn-hover focus:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
           type="button"
         >
           Learn More
-        </button>
-      </li>
+        </LearnMoreButton>
+      </ListItem>
     </>
   );
 };

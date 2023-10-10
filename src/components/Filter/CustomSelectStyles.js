@@ -22,7 +22,7 @@ export const customMakeSelectStyles = {
     height: "50px",
     background: "rgba(247, 247, 251, 1)",
     borderRadius: "14px",
-    gap: breakPoints.isTablet ? (breakPoints.isDesktop ? "32px" : "16px") : "0",
+    gap: breakPoints.isTablet ? (breakPoints.isDesktop ? "" : "16px") : "0",
     padding: breakPoints.isTablet
       ? breakPoints.isDesktop
         ? "14px 18px"
@@ -85,7 +85,7 @@ export const customMakeSelectStyles = {
   placeholder: (styles) => ({
     ...styles,
     width: breakPoints.isDesktop ? "117px" : "",
-    color: "rgba(18, 20, 23, 1)",
+    color: "#121417",
     fontSize: breakPoints.isTablet
       ? breakPoints.isDesktop
         ? "18px"
@@ -125,7 +125,8 @@ export const customPriceSelectStyles = {
       ? breakPoints.isDesktop
         ? "18px"
         : "16px"
-      : "10px",
+      : "14px",
+    display: "flex",
   }),
   control: (styles) => ({
     ...styles,
@@ -133,7 +134,8 @@ export const customPriceSelectStyles = {
     height: "50px",
     background: "rgba(247, 247, 251, 1)",
     borderRadius: "14px",
-    gap: breakPoints.isTablet ? (breakPoints.isDesktop ? "32px" : "16px") : "0",
+    width: "125px",
+    gap: breakPoints.isTablet ? (breakPoints.isDesktop ? "" : "16px") : "0",
     padding: breakPoints.isTablet
       ? breakPoints.isDesktop
         ? "14px 18px"
@@ -147,7 +149,7 @@ export const customPriceSelectStyles = {
       ? breakPoints.isDesktop
         ? "18px"
         : "16px"
-      : "10px",
+      : "14px",
     fontWeight: "500",
     lineHeight: "20px",
   }),
@@ -178,16 +180,13 @@ export const customPriceSelectStyles = {
     "&::-webkit-scrollbar": {
       width: breakPoints.isTablet ? "8px" : "4px",
     },
-
     "&::-webkit-scrollbar-track": {
       background: "transparent",
     },
-
     "&::-webkit-scrollbar-thumb": {
       background: "rgba(18, 20, 23, 0.05)",
       borderRadius: "10px",
     },
-
     "&::-webkit-scrollbar-thumb:hover": {
       background: "rgba(18, 20, 23, 0.05)",
     },
@@ -195,7 +194,7 @@ export const customPriceSelectStyles = {
   placeholder: (styles) => ({
     ...styles,
     width: breakPoints.isDesktop ? "40px" : "",
-    color: "rgba(18, 20, 23, 1)",
+    color: "#121417",
     fontSize: breakPoints.isTablet
       ? breakPoints.isDesktop
         ? "18px"

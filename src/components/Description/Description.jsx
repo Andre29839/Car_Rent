@@ -1,27 +1,23 @@
-import homeImg from "../../images/heroBg.jpg";
+import homeImg from "images/home-key.jpg";
+import { Section, StyledImg, TextContainer } from "./Description.styled";
 
 const Description = () => {
   return (
-    <section className="px-[16px] md:px-[24px] py-[20px] xl:py-[28px] xl:flex xl:gap-[8px]">
-      <div className="text-text-primary mb-[12px] xl:mb-0 text-[14px] md:text-[18px] xl:tracking-wide bg-background p-[4px]">
-        Welcome to our premier car rental platform, where your journey begins
-        with convenience and flexibility. Whether you're planning a road trip, a
-        business trip, or just need a temporary set of wheels, we've got you
-        covered. Explore a wide range of vehicles, from compact cars for city
-        escapades to spacious SUVs for family adventures. We provide transparent
-        pricing, including any additional fees, ensuring you know exactly what
-        to expect. Safety is our priority, and our well-maintained cars undergo
-        regular inspections. Join the countless satisfied customers who have
-        chosen us for their car rental needs. Start your adventure today with
-        Our Service.
-      </div>
-      <img
-        className="xl:w-[700px]"
-        src={homeImg}
-        alt="Parking"
-        loading="lazy"
-      />
-    </section>
+    <Section>
+      <TextContainer>
+        Discover the ultimate car rental experience with Our Service, where you
+        can find the perfect vehicle for your needs and preferences. Whether you
+        want to explore new destinations, attend important meetings, or simply
+        enjoy the freedom of driving, we have the solution for you. Choose from
+        a variety of cars, from cozy sedans for urban trips to spacious SUVs for
+        family fun. We offer clear and honest pricing, with no hidden charges,
+        so you can budget with confidence. Safety is our top concern, and our
+        cars are regularly checked and serviced. Join the millions of happy
+        customers who have trusted us for their car rental needs. Book your car
+        today with Our Service and get ready for an amazing adventure.
+      </TextContainer>
+      <StyledImg src={homeImg} alt="Parking" loading="lazy" />
+    </Section>
   );
 };
 

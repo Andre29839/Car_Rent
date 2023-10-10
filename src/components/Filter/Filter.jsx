@@ -1,16 +1,29 @@
 import { useState } from "react";
 import Select from "react-select";
 import { generatePricesArr } from "utils/helpers";
+import make from "make/make";
 import { ReactComponent as ArrowUp } from "images/svg/arrowUp.svg";
 import { ReactComponent as ArrowDown } from "images/svg/arrowDown.svg";
-import make from "make/make";
 import {
   customPriceSelectStyles,
   customMakeSelectStyles,
 } from "./CustomSelectStyles";
+import {
+  Button,
+  DivLable,
+  Input,
+  InputSecond,
+  Label,
+  StyledButton,
+  StyledDiv,
+  StyledForm,
+  Text,
+} from "./Filter.styled";
 
 const Filter = ({ setFilter, onSubmit }) => {
   const [isDisplaySearch, setDisplaySearch] = useState(false);
+
+  console.log(isDisplaySearch);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,36 +44,27 @@ const Filter = ({ setFilter, onSubmit }) => {
 
   return (
     <>
-      <button
-        onClick={onClickSearch}
-        type="button"
-        className="md:hidden p-[10px] mx-auto flex gap-[8px] my-[10px] bg-btn-primary hover:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
-      >
+      <StyledButton onClick={onClickSearch} type="button">
         {isDisplaySearch ? "Close filters" : "Open filters"}
         {isDisplaySearch ? (
           <ArrowUp width={20} height={20} />
         ) : (
           <ArrowDown width={20} height={20} />
         )}
-      </button>
-      <form
-        className={`${
-          isDisplaySearch
-            ? "flex flex-col items-center px-[25px] gap-y-[8px] pb-[10px]"
-            : "hidden"
-        }  md:flex gap-[14px] xl:gap-[18px] max-w-[570px] xl:max-w-[860px] mx-auto mb-[50px]`}
-        onSubmit={handleSubmit}
-      >
-        <div className="w-[95%] md:w-auto [&>label]:block flex justify-between gap-[8px] md:gap-[14px] xl:gap-[18px]">
-          <label>
+      </StyledButton>
+      <StyledForm isDisplaySearch={isDisplaySearch} onSubmit={handleSubmit}>
+        <StyledDiv>
+          <Label>
+            <Text>Car brand</Text>
             <Select
               name="make"
               placeholder="Enter the text"
               options={make}
               styles={customMakeSelectStyles}
             />
-          </label>
-          <label>
+          </Label>
+          <Label>
+            <Text>Price/ 1 hour</Text>
             <Select
               name="rentalPrice"
               placeholder="To $"
@@ -70,33 +74,21 @@ const Filter = ({ setFilter, onSubmit }) => {
               }))}
               styles={customPriceSelectStyles}
             />
-          </label>
+          </Label>
+        </StyledDiv>
+        <div>
+          <Text>Сar mileage / km</Text>
+          <DivLable>
+            <label>
+              <Input type="number" name="mileageFrom" placeholder="From" />
+            </label>
+            <label>
+              <InputSecond type="number" name="mileageTo" placeholder="To" />
+            </label>
+          </DivLable>
         </div>
-        <div className="flex divide-x-[1px] w-[95%] md:w-[200px] xl:w-[320px] divide-[#8A8A8933] rounded-[14px] overflow-hidden text-[14px] md:text-[16px] xl:text-[18px] leading-[20px] font-medium text-overlay">
-          <label>
-            <input
-              className="bg-background h-[100%] p-[10px] xl:pl-[24px] w-[100%] placeholder:text-overlay focus:outline-btn-primary"
-              type="number"
-              name="mileageFrom"
-              placeholder="From"
-            />
-          </label>
-          <label>
-            <input
-              className="bg-background h-[100%] p-[10px] xl:pl-[24px] w-[100%] placeholder:text-overlay focus:outline-btn-primary"
-              type="number"
-              name="mileageTo"
-              placeholder="To"
-            />
-          </label>
-        </div>
-        <button
-          type="submit"
-          className="w-[95%] md:w-[136px] xl:px-[44px] xl:w-auto py-[12px] bg-btn-primary hover:bg-btn-hover focus:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
-        >
-          Search
-        </button>
-      </form>
+        <Button type="submit">Search</Button>
+      </StyledForm>
     </>
   );
 };

@@ -1,6 +1,12 @@
 import { useEffect } from "react";
-import { ReactComponent as CloseBtn } from "images/svg/x.svg";
 import { addressFormatting, formatMileage } from "utils/helpers";
+import { ReactComponent as CloseBtn } from "images/svg/x.svg";
+import {
+  Backdrop,
+  PositionedElement,
+  ResponsiveDiv,
+  StyledDiv,
+} from "./Modal.styled";
 
 const Modal = ({ car, closeModal }) => {
   useEffect(() => {
@@ -20,21 +26,14 @@ const Modal = ({ car, closeModal }) => {
     if (e.target === e.currentTarget) closeModal(null);
   };
   return (
-    <div
-      onClick={onBackdropClick}
-      className="fixed top-0 w-screen h-screen bg-overlay/[0.5] z-[999]"
-    >
-      <div className="flex flex-col max-w-[320px] md:max-w-[768px] xl:max-w-[540px] md:p-[40px] relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-[1000] rounded-[24px] bg-white p-[20px]">
-        <button
-          className="absolute top-[10px] md:top-[16px] right-[10px] md:right-[16px] z-10"
-          onClick={() => closeModal(null)}
-          type="button"
-        >
+    <Backdrop onClick={onBackdropClick}>
+      <ResponsiveDiv>
+        <PositionedElement onClick={() => closeModal(null)} type="button">
           <CloseBtn fill="#111" width={24} height={24} />
-        </button>
-        <div className="relative md:w-[680px] md:h-[350px] xl:w-[470px] xl:h-auto rounded-[12px] overflow-hidden">
+        </PositionedElement>
+        <StyledDiv>
           <img src={car.img} alt={`${car.make} ${car.model}`} loading="lazy" />
-        </div>
+        </StyledDiv>
         <p className="mt-[12px] mb-[8px] text-[18px] leading-[24px] font-medium">
           {car.make}
           <span className="text-btn-primary">&nbsp;{car.model}&nbsp;</span>
@@ -91,8 +90,8 @@ const Modal = ({ car, closeModal }) => {
         >
           Rental Car
         </a>
-      </div>
-    </div>
+      </ResponsiveDiv>
+    </Backdrop>
   );
 };
 

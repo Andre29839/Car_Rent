@@ -1,4 +1,5 @@
 const make = [
+  { value: "Acura", label: "Acura" },
   { value: "Buick", label: "Buick" },
   { value: "Volvo", label: "Volvo" },
   { value: "HUMMER", label: "HUMMER" },
@@ -22,6 +23,8 @@ const make = [
   { value: "Land", label: "Land" },
   { value: "Toyota", label: "Toyota" },
   { value: "Ford", label: "Ford" },
+  { value: "Alfa Romeo", label: "Alfa Rome" },
+  { Value: "Tesla", label: "Tesla" },
 ];
 
 export default make;

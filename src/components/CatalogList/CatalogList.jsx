@@ -6,6 +6,7 @@ import { getAllCars, getCars } from "redux/cars/carsOperations";
 import { applyFilters } from "utils/helpers";
 import CatalogItem from "components/CatalogItem/CatalogItem";
 import Filter from "components/Filter/Filter";
+import { CarList, LoadMoreButton, Message } from "./CatalogList.styled";
 
 export const initialFilters = {
   make: "",
@@ -44,30 +45,24 @@ const CatalogList = () => {
       )}
       {carToRender.length === 0 ? (
         isFavoritePage ? (
-          <p className="mt-[20px] text-center text-[18px]">
-            You haven't any cars in your favorites list yet.
-          </p>
+          <Message>You haven't any cars in your favorites list yet.</Message>
         ) : (
-          <p className="mt-[20px] text-center text-[18px]">
+          <Message>
             Sorry, we did'nt found anything with this parameters
-          </p>
+          </Message>
         )
       ) : null}
-      <ul className="flex justify-center flex-row flex-wrap gap-y-[20px] gap-x-[29px]">
+      <CarList>
         {carToRender?.map((car) => (
           <CatalogItem key={car.id} carInfo={car} />
         ))}
-      </ul>
+      </CarList>
       {isFavoritePage ||
       carToRender.length === 0 ||
       carToRender.length % 8 !== 0 ? null : (
-        <button
-          onClick={onClickLoadMore}
-          className="mt-[40px] mb-[10px] mx-auto block text-btn-primary hover:text-btn-hover focus:text-btn-hover font-medium text=[16px] leading-[24px] underline decoration-solid"
-          type="button"
-        >
+        <LoadMoreButton onClick={onClickLoadMore} type="button">
           Load More
-        </button>
+        </LoadMoreButton>
       )}
     </>
   );
