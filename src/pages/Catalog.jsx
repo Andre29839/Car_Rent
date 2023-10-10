@@ -1,9 +1,9 @@
-import { CarsList } from "../components/CarsList/CarsList";
+import CatalogList from "../components/CatalogList/CatalogList";
 
 const Catalog = () => {
   return (
     <>
-      <CarsList />
+      <CatalogList />
     </>
   );
 };

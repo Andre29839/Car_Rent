@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectCars, selectFavorites } from "../../redux/selectors";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { CarItem } from "../CarItem/CarItem";
-import { getAllCars, getCars } from "../../redux/cars/carsOperations";
-import { Filter } from "../Filter/Filter";
-import { applyFilters } from "../../utils/helpers";
+import { selectCars, selectFavorites } from "redux/selectors";
+import { getAllCars, getCars } from "redux/cars/carsOperations";
+import { applyFilters } from "utils/helpers";
+import CatalogItem from "components/CatalogItem/CatalogItem";
+import Filter from "components/Filter/Filter";
 
 export const initialFilters = {
   make: "",
@@ -14,7 +14,7 @@ export const initialFilters = {
   mileageTo: 10000000,
 };
 
-export const CarsList = () => {
+const CatalogList = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const isFavoritePage = location.pathname.includes("favorite");
@@ -42,12 +42,25 @@ export const CarsList = () => {
       {isFavoritePage ? null : (
         <Filter onSubmit={onSubmit} setFilter={setFilters} />
       )}
+      {carToRender.length === 0 ? (
+        isFavoritePage ? (
+          <p className="mt-[20px] text-center text-[18px]">
+            You haven't any cars in your favorites list yet.
+          </p>
+        ) : (
+          <p className="mt-[20px] text-center text-[18px]">
+            Sorry, we did'nt found anything with this parameters
+          </p>
+        )
+      ) : null}
       <ul className="flex justify-center flex-row flex-wrap gap-y-[20px] gap-x-[29px]">
         {carToRender?.map((car) => (
-          <CarItem key={car.id} carInfo={car} />
+          <CatalogItem key={car.id} carInfo={car} />
         ))}
       </ul>
-      {isFavoritePage || carToRender.length % 8 !== 0 ? null : (
+      {isFavoritePage ||
+      carToRender.length === 0 ||
+      carToRender.length % 8 !== 0 ? null : (
         <button
           onClick={onClickLoadMore}
           className="mt-[40px] mb-[10px] mx-auto block text-btn-primary hover:text-btn-hover focus:text-btn-hover font-medium text=[16px] leading-[24px] underline decoration-solid"
@@ -59,3 +72,5 @@ export const CarsList = () => {
     </>
   );
 };
+
+export default CatalogList;

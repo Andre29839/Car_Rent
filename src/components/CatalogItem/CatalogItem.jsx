@@ -1,15 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { ReactComponent as Heart } from "../../images/svg/heart.svg";
-import { addressFormatting } from "../../utils/helpers";
+import { ReactComponent as Heart } from "images/svg/heart.svg";
+import { addressFormatting } from "utils/helpers";
+import { selectFavorites } from "redux/selectors";
 import {
   addCarToFavorites,
   removeCarFromFavorites,
-} from "../../redux/favorite/favoriteOperation";
-import { CarModal } from "../CarModal/CarModal";
-import { selectFavorites } from "../../redux/selectors";
+} from "redux/favorite/favoriteOperation";
+import Modal from "components/Modal/Modal";
 
-export const CarItem = ({ carInfo }) => {
+const CatalogItem = ({ carInfo }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const [modalCar, setModalCar] = useState(null);
@@ -27,7 +27,7 @@ export const CarItem = ({ carInfo }) => {
 
   return (
     <>
-      {modalCar ? <CarModal car={modalCar} closeModal={setModalCar} /> : null}
+      {modalCar ? <Modal car={modalCar} closeModal={setModalCar} /> : null}
       <li className="flex flex-col justify-between w-[270px]">
         <div className="relative rounded-[12px] overflow-hidden">
           <img
@@ -78,3 +78,5 @@ export const CarItem = ({ carInfo }) => {
     </>
   );
 };
+
+export default CatalogItem;

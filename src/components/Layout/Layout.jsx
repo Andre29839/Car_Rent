@@ -1,11 +1,11 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectIsLoading } from "../../redux/selectors";
-import { Loader } from "../Loader/Loader";
-import { Header } from "../Header/Header";
+import { selectIsLoading } from "redux/selectors";
+import Loader from "components/Loader/Loader";
+import Header from "components/Header/Header";
 
-export const Layout = () => {
+const Layout = () => {
   const isLoading = useSelector(selectIsLoading);
 
   return (
@@ -22,3 +22,5 @@ export const Layout = () => {
     </>
   );
 };
+
+export default Layout;

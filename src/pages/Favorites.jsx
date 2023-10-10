@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { CarsList } from "../components/CarsList/CarsList";
-import { resetCarsStore } from "../redux/cars/carsOperations";
+import { resetCarsStore } from "redux/cars/carsOperations";
+import CatalogList from "components/CatalogList/CatalogList";
 
 const Favorites = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const Favorites = () => {
 
   return (
     <>
-      <CarsList isFavorite={true} />
+      <CatalogList isFavorite={true} />
     </>
   );
 };

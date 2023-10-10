@@ -1,5 +1,5 @@
 import { useLottie } from "lottie-react";
-import carAnimation from "../../images/animation/carCheck.json";
+import carAnimation from "images/animation/car.json";
 
 const style = {
   height: 250,
@@ -14,7 +14,7 @@ const LoaderAnimation = () => {
   return <>{View}</>;
 };
 
-export const Loader = () => {
+const Loader = () => {
   return (
     <div className="fixed top-0 w-screen h-screen bg-overlay/[0.5] z-[999]">
       <div className="relative top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] z-[1000]">
@@ -23,3 +23,5 @@ export const Loader = () => {
     </div>
   );
 };
+
+export default Loader;

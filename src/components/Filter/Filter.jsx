@@ -1,27 +1,27 @@
+import { useState } from "react";
 import Select from "react-select";
-import { ReactComponent as ArrowUp } from "../../images/svg/arrowUp.svg";
-import { ReactComponent as ArrowDown } from "../../images/svg/arrowDown.svg";
-import { makes } from "../../constants/makes";
-import { generatePricesArr } from "../../utils/helpers";
+import { generatePricesArr } from "utils/helpers";
+import { ReactComponent as ArrowUp } from "images/svg/arrowUp.svg";
+import { ReactComponent as ArrowDown } from "images/svg/arrowDown.svg";
+import make from "make/make";
 import {
   customPriceSelectStyles,
   customMakeSelectStyles,
 } from "./CustomSelectStyles";
-import { useState } from "react";
 
-export const Filter = ({ setFilter, onSubmit }) => {
+const Filter = ({ setFilter, onSubmit }) => {
   const [isDisplaySearch, setDisplaySearch] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const { make, mileageFrom, mileageTo, rentalPrice } = e.target.elements;
     const filters = {
-      make: make.value || '',
+      make: make.value || "",
       rentalPrice: +rentalPrice.value || 100000,
       mileageFrom: +mileageFrom.value || 0,
       mileageTo: +mileageTo.value || 100000,
     };
-    setFilter(filters)
+    setFilter(filters);
     onSubmit();
   };
 
@@ -56,7 +56,7 @@ export const Filter = ({ setFilter, onSubmit }) => {
             <Select
               name="make"
               placeholder="Enter the text"
-              options={makes}
+              options={make}
               styles={customMakeSelectStyles}
             />
           </label>
@@ -100,3 +100,5 @@ export const Filter = ({ setFilter, onSubmit }) => {
     </>
   );
 };
+
+export default Filter;

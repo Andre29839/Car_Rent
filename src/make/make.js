@@ -1,4 +1,4 @@
-export const makes = [
+const make = [
   { value: "Buick", label: "Buick" },
   { value: "Volvo", label: "Volvo" },
   { value: "HUMMER", label: "HUMMER" },
@@ -20,4 +20,8 @@ export const makes = [
   { value: "Chrysler", label: "Chrysler" },
   { value: "Kia", label: "Kia" },
   { value: "Land", label: "Land" },
+  { value: "Toyota", label: "Toyota" },
+  { value: "Ford", label: "Ford" },
 ];
+
+export default make;

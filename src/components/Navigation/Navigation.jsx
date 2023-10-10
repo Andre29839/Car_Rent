@@ -1,29 +1,27 @@
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Nav, NavLinks } from "./Navigation.styled";
+import { useMediaQuery } from "react-responsive";
 
-export const Navigation = ({ isOpenNav, setOpenNav }) => {
+const Navigation = ({ isOpenNav, setOpenNav }) => {
+  const isMobile = useMediaQuery({ query: "(max-width: 767.9px)" });
   useEffect(() => {
     document.body.style.overflow = "visible";
     if (isOpenNav) document.body.style.overflow = "hidden";
   }, [isOpenNav]);
 
   return (
-    <nav
-      className={`absolute -left-[100%] flex ease-in-out duration-200 [&>.active]:underline ${
-        isOpenNav
-          ? "left-[0] top-0 z-10 flex-col gap-[24px] pt-[40px] pl-[20px] w-[70vw] bg-[#F9F9F9] h-screen"
-          : ""
-      } md:static gap-[18px]`}
-    >
-      <NavLink onClick={setOpenNav} className="hover:underline text-[20px] font-medium leading-[20px]" to="/">
+    <Nav isOpenNav={isOpenNav}>
+      <NavLinks onClick={setOpenNav} to="/">
         Home
-      </NavLink>
-      <NavLink onClick={setOpenNav} className="hover:underline text-[20px] font-medium leading-[20px]" to="/catalog">
+      </NavLinks>
+      <NavLinks onClick={setOpenNav} to="/catalog">
         Catalog
-      </NavLink>
-      <NavLink onClick={setOpenNav} className="hover:underline text-[20px] font-medium leading-[20px]" to="/favorites">
+      </NavLinks>
+      <NavLinks onClick={setOpenNav} to="/favorites">
         Favorites
-      </NavLink>
-    </nav>
+      </NavLinks>
+    </Nav>
   );
 };
+
+export default Navigation;

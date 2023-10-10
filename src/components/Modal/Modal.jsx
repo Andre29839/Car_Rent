@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { ReactComponent as CloseBtn } from "../../images/svg/x.svg";
-import { addressFormatting } from "../../utils/helpers";
+import { ReactComponent as CloseBtn } from "images/svg/x.svg";
+import { addressFormatting, formatMileage } from "utils/helpers";
 
-export const CarModal = ({ car, closeModal }) => {
+const Modal = ({ car, closeModal }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") closeModal(null);
@@ -76,10 +76,13 @@ export const CarModal = ({ car, closeModal }) => {
             <p key={el}>{el}</p>
           ))}
           <p>
-            Mileage: <span>{car.mileage}</span>
+            Mileage:{" "}
+            <span className="text-btn-primary">
+              {formatMileage(car.mileage)}
+            </span>
           </p>
           <p>
-            Price: <span>{car.rentalPrice}</span>
+            Price: <span className="text-btn-primary">{car.rentalPrice}</span>
           </p>
         </div>
         <a
@@ -92,3 +95,5 @@ export const CarModal = ({ car, closeModal }) => {
     </div>
   );
 };
+
+export default Modal;

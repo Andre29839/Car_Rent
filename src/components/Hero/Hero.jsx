@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const Hero = () => {
+const Hero = () => {
   return (
     <section className="py-[100px] md:py-[150px] bg-hero-bg bg-cover bg-no-repeat">
       <h1 className="text-white leading-[40px] text-[36px] text-center">
@@ -15,3 +15,5 @@ export const Hero = () => {
     </section>
   );
 };
+
+export default Hero;
