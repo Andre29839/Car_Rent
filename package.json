@@ -2,7 +2,7 @@
   "name": "car-rent",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://yurii2007.github.io/car-rent/",
+  "homepage": "https://Andre29839.github.io/Car_Rent/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",

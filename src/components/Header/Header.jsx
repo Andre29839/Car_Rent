@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { ReactComponent as Logo } from "../../images/svg/logo.svg";
+import logo from "../../images/logo.png";
 import burgerMenu from "../../images/animation/burgerAnim.json";
 import Lottie from "lottie-react";
 import { Navigation } from "../Navigation/Navigation";
@@ -30,7 +30,7 @@ export const Header = () => {
   return (
     <header>
       <div className="flex justify-between items-center py-[28px] px-[16px] xl:px-[24px] max-w-[375px] md:max-w-[1024px] xl:max-w-[1440px] my-0 mx-auto">
-        <Logo width={50} height={50} />
+        <img src={logo} width={50} height={50} alt="logo-compony" />
         <Lottie
           onClick={onBurgerClick}
           lottieRef={lottieRef}
