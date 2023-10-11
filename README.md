@@ -4,7 +4,7 @@ Welcome to JourneyMate Car Rentals, your trusted companion for all your road adv
 
 At JourneyMate, we believe in making every journey memorable. That’s why we’re committed to providing top-notch customer service and high-quality vehicles that cater to your every need. So why wait? Embark on your next road trip with JourneyMate Car Rentals - your partner on the open road.
 
-This project was initiated with the power of React App Creator, setting the foundation for a seamless user experience.(https://github.com/facebook/create-react-app).
+This project was initiated with the power of [React App Creator](https://github.com/facebook/create-react-app), setting the foundation for a seamless user experience.
 
 ## A list of tools that I use in this project
 
