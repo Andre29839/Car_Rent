@@ -24,7 +24,7 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledForm = styled.form`
-  display: ${({ isDisplaySearch }) => (isDisplaySearch ? "flex" : "none")};
+  display: ${({ $isDisplaySearch }) => ($isDisplaySearch ? "flex" : "none")};
   flex-direction: row;
   align-items: center;
   padding: 25px 0;

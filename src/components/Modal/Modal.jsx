@@ -5,8 +5,18 @@ import {
   Backdrop,
   PositionedElement,
   ResponsiveDiv,
+  SpanRental,
   StyledDiv,
+  StyledDivDesc,
+  StyledDivRental,
+  StyledLink,
+  StyledParagraph,
+  StyledParagraphDesc,
+  StyledParagraphRental,
 } from "./Modal.styled";
+import { createPortal } from "react-dom";
+
+const modal = document.querySelector("#modal");
 
 const Modal = ({ car, closeModal }) => {
   useEffect(() => {
@@ -25,7 +35,7 @@ const Modal = ({ car, closeModal }) => {
   const onBackdropClick = (e) => {
     if (e.target === e.currentTarget) closeModal(null);
   };
-  return (
+  return createPortal(
     <Backdrop onClick={onBackdropClick}>
       <ResponsiveDiv>
         <PositionedElement onClick={() => closeModal(null)} type="button">
@@ -34,64 +44,47 @@ const Modal = ({ car, closeModal }) => {
         <StyledDiv>
           <img src={car.img} alt={`${car.make} ${car.model}`} loading="lazy" />
         </StyledDiv>
-        <p className="mt-[12px] mb-[8px] text-[18px] leading-[24px] font-medium">
+        <StyledParagraph>
           {car.make}
-          <span className="text-btn-primary">&nbsp;{car.model}&nbsp;</span>
+          <SpanRental>&nbsp;{car.model}&nbsp;</SpanRental>
           {car.year}
-        </p>
-        <div className="mt-[8px] [&>*]:inline-block text-overlay/[0.5] [&>*]:border-r-[1px] [&>*]:border-overlay/[0.1] [&>*]:px-[6px] text-[12px] leading-[18px]">
+        </StyledParagraph>
+        <StyledDivDesc>
           <span>{addressFormatting(car.address).join("")}</span>
           <span>Id: {car.id}</span>
           <span>Year: {car.year}</span>
           <span>Type: {car.type}</span>
           <span>Fuel Consumption: {car.fuelConsumption}</span>
-          <span className="last:border-r-0">Engine Size: {car.engineSize}</span>
-        </div>
-        <p className="text-[14px] mt-[14px] leading-[20px]">
-          {car.description}
-        </p>
-        <p className="mt-[18px] text-[14px] font-medium leading-[20px]">
+          <span>Engine Size: {car.engineSize}</span>
+        </StyledDivDesc>
+        <StyledParagraphDesc>{car.description}</StyledParagraphDesc>
+        <StyledParagraphDesc>
           Accessories and functionalities:
-        </p>
-        <div className="mt-[8px] [&>*]:inline-block text-overlay/[0.5] [&>*]:border-r-[1px] [&>*]:border-overlay/[0.1] [&>*]:px-[6px] text-[12px] leading-[18px]">
+        </StyledParagraphDesc>
+        <StyledDivDesc>
           {car.accessories
             .slice(1, 3)
             .concat(car.functionalities.slice(1, 3))
             .map((el) => (
-              <span className="last:border-r-0" key={el}>
-                {el}
-              </span>
+              <span key={el}>{el}</span>
             ))}
-        </div>
-        <p className="mt-[18px] text-[14px] font-medium leading-[20px]">
-          Rental Conditions:
-        </p>
-        <div
-          className="flex flex-wrap gap-[8px] mt-[8px]
-         [&>p]:bg-background [&>p]:rounded-[35px] [&>p]:py-[7px] [&>p]:px-[10px] 
-         [&>p]:font-semibold [&>p]:text-[12px] [&>p]:leading-[18px]"
-        >
+        </StyledDivDesc>
+        <StyledParagraphRental>Rental Conditions:</StyledParagraphRental>
+        <StyledDivRental>
           {car.rentalConditions.split("\n").map((el) => (
             <p key={el}>{el}</p>
           ))}
           <p>
-            Mileage:{" "}
-            <span className="text-btn-primary">
-              {formatMileage(car.mileage)}
-            </span>
+            Mileage: <SpanRental>{formatMileage(car.mileage)}</SpanRental>
           </p>
           <p>
-            Price: <span className="text-btn-primary">{car.rentalPrice}</span>
+            Price: <SpanRental>{car.rentalPrice}</SpanRental>
           </p>
-        </div>
-        <a
-          className="block md:w-[168px] mt-[16px] xl:mt-[24px] py-[12px] bg-btn-primary hover:bg-btn-hover focus:bg-btn-hover rounded-[12px] text-white font-semibold text-center text-[14px] leading-[20px]"
-          href="tel:+380730000000"
-        >
-          Rental Car
-        </a>
+        </StyledDivRental>
+        <StyledLink href="tel:+380730000000">Rental Car</StyledLink>
       </ResponsiveDiv>
-    </Backdrop>
+    </Backdrop>,
+    modal
   );
 };
 

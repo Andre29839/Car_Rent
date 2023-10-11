@@ -8,7 +8,7 @@ const Navigation = ({ isOpenNav, setOpenNav }) => {
   }, [isOpenNav]);
 
   return (
-    <Nav isOpenNav={isOpenNav}>
+    <Nav $isOpenNav={isOpenNav}>
       <NavLinks onClick={setOpenNav} to="/">
         Home
       </NavLinks>

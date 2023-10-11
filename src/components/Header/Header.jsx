@@ -30,6 +30,11 @@ const Header = () => {
   useEffect(() => {
     if (!isMobile && isOpenNav) {
       setOpenNav(false);
+      lottieRef.current.setDirection(-1);
+      lottieRef.current.play();
+      setTimeout(() => {
+        lottieRef.current.pause();
+      }, 1000);
     }
   }, [isMobile, isOpenNav]);
 

@@ -9,6 +9,7 @@ const breakPoints = {
 export const customMakeSelectStyles = {
   container: (styles) => ({
     ...styles,
+    width: "100%",
     fontSize: breakPoints.isTablet
       ? breakPoints.isDesktop
         ? "18px"
@@ -18,6 +19,7 @@ export const customMakeSelectStyles = {
   }),
   control: (styles) => ({
     ...styles,
+    width: "100%",
     border: "none",
     height: "50px",
     background: "rgba(247, 247, 251, 1)",
@@ -119,6 +121,7 @@ export const customMakeSelectStyles = {
 export const customPriceSelectStyles = {
   container: (styles) => ({
     ...styles,
+    width: "100%",
     minHeight: "50px",
     maxHeight: "50px",
     fontSize: breakPoints.isTablet
@@ -130,11 +133,11 @@ export const customPriceSelectStyles = {
   }),
   control: (styles) => ({
     ...styles,
+    width: "100%",
     border: "none",
     height: "50px",
     background: "rgba(247, 247, 251, 1)",
     borderRadius: "14px",
-    width: "125px",
     gap: breakPoints.isTablet ? (breakPoints.isDesktop ? "" : "16px") : "0",
     padding: breakPoints.isTablet
       ? breakPoints.isDesktop

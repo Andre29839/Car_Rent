@@ -1,5 +1,5 @@
 import { useLottie } from "lottie-react";
-import carAnimation from "images/animation/car.json";
+import carAnimation from "images/animation/animationLoader.json";
 import { CenteredDiv, StyledDiv } from "./Loader.styled";
 
 const style = {

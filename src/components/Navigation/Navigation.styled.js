@@ -13,7 +13,7 @@ export const Nav = styled.nav`
   }
 
   ${(props) =>
-    props.isOpenNav &&
+    props.$isOpenNav &&
     css`
       left: 0;
       top: 0;

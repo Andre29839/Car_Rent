@@ -1,7 +1,19 @@
+import { useMediaQuery } from "react-responsive";
 import homeImg from "images/home-key.jpg";
+import homeScreen from "images/home-screen.png";
 import { Section, StyledImg, TextContainer } from "./Description.styled";
+import animData from "images/animation/animation-home.json";
+import Lottie from "lottie-react";
+
+const style = {
+  width: 500,
+  height: 400,
+};
 
 const Description = () => {
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 1279.9px)" });
+  const isBigScreen = useMediaQuery({ query: "(min-width: 1280px)" });
+  const isBiggerScreen = useMediaQuery({ query: "(min-width: 1440px)" });
   return (
     <Section>
       <TextContainer>
@@ -15,8 +27,16 @@ const Description = () => {
         cars are regularly checked and serviced. Join the millions of happy
         customers who have trusted us for their car rental needs. Book your car
         today with Our Service and get ready for an amazing adventure.
+        {isBigScreen ? (
+          <Lottie animationData={animData} autoplay loop style={style} />
+        ) : null}
       </TextContainer>
-      <StyledImg src={homeImg} alt="Parking" loading="lazy" />
+      {isBiggerScreen ? (
+        <StyledImg src={homeImg} alt="Parking" loading="lazy" />
+      ) : null}
+      {isSmallScreen ? (
+        <StyledImg src={homeScreen} alt="Parking" loading="lazy" />
+      ) : null}
     </Section>
   );
 };

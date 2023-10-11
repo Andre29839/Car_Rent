@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
+import { useMediaQuery } from "react-responsive";
 import { generatePricesArr } from "utils/helpers";
 import make from "make/make";
 import { ReactComponent as ArrowUp } from "images/svg/arrowUp.svg";
@@ -23,7 +24,7 @@ import {
 const Filter = ({ setFilter, onSubmit }) => {
   const [isDisplaySearch, setDisplaySearch] = useState(false);
 
-  console.log(isDisplaySearch);
+  const isMobile = useMediaQuery({ query: "(max-width: 767.9px)" });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,6 +43,12 @@ const Filter = ({ setFilter, onSubmit }) => {
     setDisplaySearch(!isDisplaySearch);
   };
 
+  useEffect(() => {
+    if (!isMobile && isDisplaySearch) {
+      setDisplaySearch(false);
+    }
+  }, [isMobile, isDisplaySearch]);
+
   return (
     <>
       <StyledButton onClick={onClickSearch} type="button">
@@ -52,7 +59,7 @@ const Filter = ({ setFilter, onSubmit }) => {
           <ArrowDown width={20} height={20} />
         )}
       </StyledButton>
-      <StyledForm isDisplaySearch={isDisplaySearch} onSubmit={handleSubmit}>
+      <StyledForm $isDisplaySearch={isDisplaySearch} onSubmit={handleSubmit}>
         <StyledDiv>
           <Label>
             <Text>Car brand</Text>
